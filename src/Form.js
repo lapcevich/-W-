@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { TextField, Button } from "@mui/material";
+import { Box } from "@mui/system";
 
 const Form = ({ handleSubmit, inEmployee }) => {
   const [employee, setEmployee] = useState(inEmployee);
@@ -17,23 +19,11 @@ const Form = ({ handleSubmit, inEmployee }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        value={employee.name}
-        onChange={handleChange}
-      />
-      <label htmlFor="job">Job</label>
-      <input
-        type="text"
-        name="job"
-        value={employee.job}
-        onChange={handleChange}
-      />
-      <button type="submit" aria-label="Add Employee">Add</button>
-    </form>
+    <Box component="form" onSubmit={onSubmit} sx={{ '& > :not(style)': { m: 1 } }}>
+      <TextField label="Name" type="text" name="name" value={employee.name} onChange={handleChange} />
+      <TextField label="Job" type="text" name="job" value={employee.job} onChange={handleChange} />
+      <Button type="submit" variant="contained" color="primary" aria-label="Add Employee">Add</Button>
+    </Box>
   );
 };
 

@@ -3,6 +3,7 @@ import "./App.css";
 import EmployeeAPI from "./api/service";
 import Table from "./Table";
 import Form from "./Form";
+import { Container, Typography } from "@mui/material";
 
 const initialEmployees = EmployeeAPI.all();
 
@@ -23,10 +24,11 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Container>
+      <Typography variant="h2" gutterBottom>Employee Management</Typography>
       <Form handleSubmit={addEmployee} inEmployee={{ name: "", job: "" }} />
       <Table employees={employees} delEmployee={delEmp} />
-    </div>
+    </Container>
   );
 }
 

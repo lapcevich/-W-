@@ -1,28 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Table as MuiTable, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 
 const Table = ({ employees, delEmployee }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Job</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map((employee, index) => (
-          <tr key={index}>
-            <td>{employee.name}</td>
-            <td>{employee.job}</td>
-            <td>
-              <button onClick={() => delEmployee(employee.id)} aria-label={`Delete ${employee.name}`}>Delete</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <TableContainer component={Paper}>
+      <MuiTable>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Job</TableCell>
+            <TableCell>Remove</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {employees.map((employee, index) => (
+            <TableRow key={index}>
+              <TableCell>{employee.name}</TableCell>
+              <TableCell>{employee.job}</TableCell>
+              <TableCell>
+                <Button variant="contained" color="secondary" onClick={() => delEmployee(employee.id)} aria-label={`Delete ${employee.name}`}>
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </MuiTable>
+    </TableContainer>
   );
 };
 
