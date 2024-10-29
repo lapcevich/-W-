@@ -20,8 +20,8 @@ const Form = ({ handleSubmit, inEmployee }) => {
 
   return (
     <Box component="form" onSubmit={onSubmit} sx={{ '& > :not(style)': { m: 1 } }}>
-      <TextField label="Name" type="text" name="name" value={employee.name} onChange={handleChange} />
-      <TextField label="Job" type="text" name="job" value={employee.job} onChange={handleChange} />
+      <TextField label="Name" type="text" name="name" value={employee.name} onChange={handleChange} required />
+      <TextField label="Job" type="text" name="job" value={employee.job} onChange={handleChange} required />
       <Button type="submit" variant="contained" color="primary" aria-label="Add Employee">Add</Button>
     </Box>
   );
