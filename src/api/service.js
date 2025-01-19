@@ -36,5 +36,14 @@ const EmployeeAPI = {
       this.employees.shift(employee);
       return employee;
     },
-  };
-  export default EmployeeAPI;
+    login: async (username, password) => {
+        // Здесь вы можете заменить это на реальный API вызов
+        if (username === "user" && password === "password") {
+            return "example.jwt.token"; // Фейковый токен
+        } else {
+            throw new Error("Неверные учетные данные");
+        }
+    },
+};
+
+export default EmployeeAPI;

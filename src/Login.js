@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Box, Typography } from "@mui/material";
+import EmployeeAPI from "./api/service"; // Импортируем API
+import { AuthContext } from "./AuthContext"; // Импортируем контекст
 
-const Login = ({ setAuthToken }) => {
+const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext); // Получаем метод login из контекста
 
-  const onSubmit = (data) => {
-    // Пример обработки авторизации
-    const fakeToken = "example.jwt.token"; // Обычно вы получите этот токен от API
-    setAuthToken(fakeToken);
-    navigate("/employee-management");
+  const onSubmit = async (data) => {
+    try {
+      const token = await EmployeeAPI.login(data.username, data.password);
+      login(token); // Устанавливаем токен в контексте
+      navigate("/employee-management");
+    } catch (error) {
+      console.error(error);
+      // Здесь можно добавить обработку ошибок, например, показать сообщение пользователю
+    }
   };
 
   return (
